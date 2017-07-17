@@ -1,0 +1,491 @@
+---
+title: Oravecz & Muth (2017). Fitting growth curve models in the Bayesian framework.
+  Psychonomic Bulletin and Review
+author: "Tobias Busch"
+date: "July 19 2017"
+output:
+  html_notebook:
+    fig_width: 10
+    theme: journal
+  html_document:
+    fig_width: 10
+    toc: yes
+subtitle: ExpORL Journal Club
+---
+
+This is a Bayesian Growth Curve analysis, following the tutorial by [Oravecz & Muth (2017)](https://doi.org/10.3758/s13423-017-1281-0). The paper's accompanying git repository can be found [here](https://git.psu.edu/zzo1/FittingGCMBayesian). In some places the code has been adapted to be more concise.
+
+**Note:** This analysis requires a working installation of the Bayesian sampling engine [JAGS](http://mcmc-jags.sourceforge.net/).
+
+```{r}
+library(tidyverse)  
+library(stringr)    
+library(rjags)
+
+# Set ggplot theme for the this notebook
+theme_set(theme_grey() + 
+          theme(panel.grid.major.y = element_blank(), 
+                panel.grid.minor.y = element_blank(),
+                panel.grid.minor.x = element_blank()
+                )
+          )
+```
+
+## load and clean marital love data set
+We investigate changes in father’s (n=106) feeling of marital love during transition into parenthood (a "marital love" score between 0-100). There were 4 measurement moments (-3, 3, 9, 36 months after birth of their first child). Fathers are divided into 3 groups, depending on "positivity" of life experiences within the time they were married, but before child is born (low, medium, high positivity). Examples of positive/negative evants are job promotion, death of family member etc.
+
+We load the data and change it into long format (more convenient), add subject id, and use less cryptic column and factor level names.
+
+```{r}
+loveData <- read.csv("lovedata.csv")
+
+loveData <- loveData %>% 
+  rename(posFactor = PosFactor,     # father's positivity group
+         lowPos = X1,               # the 2 dummy coding variables for 3-level positivity factor
+         highPos = X2) %>%
+  mutate(subject = as.factor(row_number()),  
+         posFactor = recode_factor(posFactor, "1"="Low", "2"="Medium", "3"="High") %>% 
+           C(base=2)) %>% 
+  select(subject, everything())     # reorder columns
+
+# make long format
+loveData <- loveData %>% 
+  gather(key = month, value = score, M1:M4) %>%
+  mutate(month = recode(month, "M1"=-3, "M2"=3, "M3"=9, "M4"=36)) # measurement moment (mo. after birth)
+
+contrasts(loveData$posFactor)   # Check: is 'Medium' reference level?
+loveData
+```
+
+## Plot observed data
+
+```{r fig.width=10, fig.asp=.4}
+loveData %>%
+  ggplot(aes(month, score, group = subject)) + 
+    geom_line(aes(col = subject), show.legend = F, lty="solid") +
+    facet_grid(~posFactor) +
+    scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 36)) +
+    scale_y_continuous(name = "Father's Marital Love Score", limits = c(10,100))
+
+ggsave("observed.png", width = 10, height = 4)
+```
+
+## Prepare data for JAGS
+For JAGS all data that the model should use needs to be in the form of a named list.
+
+```{r}
+
+jagsData <- list(
+  "nObservations" = nrow(loveData),               # number of observations
+  "nSubjects" = length(unique(loveData$subject)), # number of subjects (fathers)
+  "subject" = loveData$subject,                   # subject id of observation
+  "time" = loveData$month,                        # month of observation
+  "lowPos" = loveData$lowPos,                     # dummy var.s for positivity factor
+  "highPos" = loveData$highPos,
+  "score" = loveData$score                        # dv: father's marital love score
+)
+
+glimpse(jagsData)
+```
+
+## Specify model in BUGS modeling language
+JAGS uses the BUGS modeling language to specify models. (Win)BUGS is a software similar to JAGS. Martyn Plummer, the author of JAGS used to work on BUGS before. Note that for JAGS uses precision instead of variance to parameterize distributions. Precision is simply the inverse of the variance (1/s^2).
+
+```{r}
+GCM <- "
+model {
+# Loop over observations
+for (i in 1:nObservations) {
+  # Likelihood Function (assumed data generating distribution), Eq. 1
+  score[i] ~ dnorm(betas[subject[i],1] + betas[subject[i],2]*time[i], 1/pow(sdLevel1Error,2))
+}
+
+# Loop over subjects
+for (j in 1:nSubjects) {
+  level2MeanVector[j,1] <- medPInt + betaLowPInt*lowPos[j] + betaHighPInt*highPos[j]
+  level2MeanVector[j,2] <- medPSlope + betaLowPSlope*lowPos[j] + betaHighPSlope*highPos[j]
+
+  # Level 2 bivariate distribution of intercepts and slopes, Eq. 6
+  betas[j,1:2] ~ dmnorm(level2MeanVector[j,1:2], interpersonPrecisionMatrix[1:2,1:2])
+}
+
+# Prior distributions
+medPInt ~ dnorm(0,0.01)
+medPSlope ~ dnorm(0,0.01)
+
+betaLowPInt ~ dnorm(0,0.01)
+betaLowPSlope ~ dnorm(0,0.01)
+betaHighPInt ~ dnorm(0,0.01)
+betaHighPSlope ~ dnorm(0,0.01)
+
+sdLevel1Error ~ dunif(0,100)
+sdIntercept ~ dunif(0,100)
+sdSlope ~ dunif(0,100)
+corrIntSlope ~ dunif(-1,1)
+
+# Transforming model parameters
+interpersonCovMatrix[1,1] = pow(sdIntercept,2)
+interpersonCovMatrix[2,2] = pow(sdSlope,2)
+interpersonCovMatrix[1,2] = corrIntSlope * sdIntercept * sdSlope
+interpersonCovMatrix[2,1] = interpersonCovMatrix[1,2]
+interpersonPrecisionMatrix <- inverse(interpersonCovMatrix)
+
+# We also keep track of other parameters of interest
+# (not obligatory for the model to run, but useful for us)
+
+# High and low positivity slopes and intercepts
+lowPInt <- medPInt + betaLowPInt
+highPInt <- medPInt + betaHighPInt
+lowPSlope <- medPSlope + betaLowPSlope
+highPSlope <- medPSlope + betaHighPSlope
+
+# planned comparisons - contrasts between low, mid, and high intercepts and slopes
+c_highLowPInt <- betaHighPInt - betaLowPInt
+c_medLowPInt <- - betaLowPInt
+c_highMedPInt <- betaHighPInt
+c_highLowPSlope <- betaHighPSlope - betaLowPSlope
+c_medLowPSlope <- - betaLowPSlope
+c_highMedPSlope <- betaHighPSlope
+}
+"
+# the model code needs to be saved in a file that is then read by the jags function
+cat(GCM, file = "loveModel.bugs") 
+```
+
+## Specify the modeling and sampling parameters
+
+```{r}
+
+# the parameters we want to monitor
+parameters <- c("lowPInt", "medPInt", "highPInt", 
+                "lowPSlope", "medPSlope", "highPSlope",  
+                "betaLowPInt", "betaHighPInt", "betaLowPSlope", "betaHighPSlope",
+                "sdIntercept", "sdSlope", "corrIntSlope", "sdLevel1Error",
+                "c_highLowPInt", "c_highMedPInt", "c_medLowPInt",
+                "c_highLowPSlope", "c_highMedPSlope", "c_medLowPSlope",
+                "betas")
+
+# set random number generators and seeds (optional, for reproducibility)
+inits <- list(
+  list(.RNG.seed=5,.RNG.name="base::Mersenne-Twister"),
+  list(.RNG.seed=6,.RNG.name="base::Mersenne-Twister"),
+  list(.RNG.seed=7,.RNG.name="base::Mersenne-Twister"),
+  list(.RNG.seed=8,.RNG.name="base::Mersenne-Twister"),
+  list(.RNG.seed=9,.RNG.name="base::Mersenne-Twister"),
+  list(.RNG.seed=10,.RNG.name="base::Mersenne-Twister"))
+
+# other parameters for the model / sampling
+nAdapt <- 2000              # n iterations for algorithm to adapt to data/model
+nBurnIn <- 1000             # n burn-in iterations
+postSamples <- 30000        # how many samples we want in total
+thinning <- 5               # thinning interval
+nChains <- 6                # how many sampling chains
+
+nIter <- ceiling((postSamples * thinning)/nChains)
+
+# initialize the model
+mdl <- jags.model("loveModel.bugs", jagsData, n.chains = nChains, n.adapt = nAdapt, inits = inits)
+```
+
+## Get the samples
+We sample from our parameters posterior distribution via the MCMC algorithm implemented in JAGS.
+
+```{r}
+t <- Sys.time()
+
+# run run burn-in iterations
+update(mdl, n.iter = nBurnIn)
+
+# sample from the posterior distribution
+codaSamples <- coda.samples(mdl,
+                            variable.names = parameters,
+                            n.iter = nIter,
+                            thin = thinning,
+                            seed = 5)
+
+Sys.time() - t # How long did it take to get the samples?
+```
+
+## Save samples for later use
+If needed, save and load samples from previous run of the model to save time.
+
+```{r}
+# save(codaSamples, file = "loveModelSamples.save", compress = T)
+# load("loveModelSamples.save")
+```
+
+## Check convergence of chains
+For each parameter we ran 6 chains with different starting values. Have all chanins converged to the same area, i.e. do all chains find similar likely values for the parameter?
+
+```{r}
+
+# Graphical convergance check. Here only done for one parameter. Normally it should be done for all parameters. 
+traceplot(codaSamples[,"lowPInt"] , main="" , xlab = "Samples", ylab="Low Positivity Intercept") 
+traceplot(codaSamples[,"lowPSlope"] , main="" , xlab = "Samples", ylab="Low Positivity Slope") 
+
+chains = length(codaSamples)
+xax = NULL
+yax = NULL
+for ( cc in 1:chains ) {
+  calcdens = density(codaSamples[,"lowPInt"][[cc]]) 
+  xax = cbind(xax,calcdens$x)
+  yax = cbind(yax,calcdens$y)
+}
+matplot( xax , yax , type="l", xlab="Low Positivity Intercept" , ylab="Probability Density" )
+
+# Numerical check: Gelman Rubin (R hat) diagnostic. Should be > 1.1 for all parameters. 
+# Indicates the ratio of between and within chain variances. 
+gelman.diag(codaSamples, multivariate = FALSE)
+
+# The coda package provides more diagnostic and summary functions for MCMC chains
+# e.g. use plot(codaSamples) to plot all chains for all variables (takes a while).
+# see also: gelman.plot(codaSamples), effectiveSize(codaSamples)
+```
+
+## Create Summary Table of posterior distributions
+We use the functions provided in the papers git repository to create a summary of the posterior distribution.
+
+  - mean
+  - posterior standard deviation (PSD), uncertainty around the mean (similar to SE)
+  - posterior credibility interval (PCI), central 95% of posterior distribution
+  - Highest density interval (HDI), 95% range of the distribution with highest probability density
+  - Percentage of post. distr. below, in, or above region of practical equivalence (ROPE), here: ROPE=[-0.05,0.05], i.e. practically equivalent to zero
+
+```{r}
+source("posteriorSummaryStats.R") 
+
+resultTable <- summarizePost(codaSamples) %>%
+  as.data.frame() %>% 
+  rownames_to_column("parameter")
+
+# finds non-converged chains
+resultTable %>% filter(RHAT > 1.1)
+
+# Display summary statistics for selected parameters 
+resultTable %>% filter(!str_detect(parameter, "^betas"))
+```
+
+## Make pretty output table for presentation (Optional) 
+*Note:* requires the stargazer package
+
+```{r}
+resultTable %>% 
+  filter(!str_detect(parameter, "^betas")) %>%
+  select(-ESS, -RHAT) %>%
+  rename(stROPE = `st -0.05`,
+         inROPE = ` (-0.05,0.05)`,
+         ltROPE = `lt 0.05`) %>%
+  stargazer::stargazer(type = "text", summary = F, rownames=F)
+```
+
+## Alternative solution to get posterior summary
+The paper uses a pretty complex script to produce the summary table. 
+It's probably possible to create the same table with less code. I've tried but couldn't figure out (yet) how to get the same values for ESS and RHAT, and how to get ROPE-related statistics. 
+
+*Not functional*
+
+```{r, eval=FALSE}
+to_df <- function(x) rownames_to_column(as.data.frame(x), "parameter")
+
+s <-summary(codaSamples, quantiles=c(0.025, 0.975))  # quantiles = Credible intervals (here 95% interval)
+s1 <- to_df(s[[1]])
+s2 <- to_df(s[[2]])
+s3 <- to_df(HDInterval::hdi(codaSamples, credMass = 0.95) %>% t())   # produces 0.95 HDI
+s4 <- to_df(effectiveSize(codaSamples)) %>% rename(ESS = x) # Effective Sample Size (ESS)
+s5 <- to_df(gelman.diag(codaSamples, multivariate = F)$psrf) # R hat convergence diagnostic
+
+myResultTable <- full_join(s1, s2, by = "parameter") %>%
+                 full_join(s3, by = "parameter") %>%
+                 full_join(s4, by = "parameter") %>%
+                 full_join(s5, by = "parameter") %>%
+                 select(-`Naive SE`, -`Time-series SE`, -`Upper C.I.`) %>%
+                 rename(mean = Mean,
+                       PSD = SD,
+                       PCI_low = `2.5%`,
+                       PCI_high = `97.5%`,
+                       HDI_low = lower,
+                       HDI_high = upper,
+                       RHAT = `Point est.`)
+
+myResultTable %>% filter(!str_detect(parameter, "^betas"))
+```
+
+## Model Summary
+
+```{r}
+
+# Get individual intercepts and slopes
+betas <- resultTable %>% 
+  filter(str_detect(parameter, "betas")) %>%
+  extract(parameter, c("subject", "coef"), "betas\\[([0-9]+),([0-9]+)\\]") %>%
+  mutate(subject = as.factor(subject),
+         coef = recode(coef, "1" = "intercept", "2" = "slope")) %>%
+  select(subject, coef, mean) %>%
+  spread(key = coef, value = mean) 
+
+betas
+```
+
+```{r fig.width=12, fig.height = 5}
+
+# make predictions for individuals
+predictions <- loveData %>% 
+  left_join(betas, by = "subject") %>%
+  mutate(predicted = intercept + month*slope)
+
+# select subsample of subjects for plot
+s <- sample(unique(loveData$subject), 54)
+
+predictions %>% 
+  filter(subject %in% s) %>%
+  ggplot(aes(month, score, group = subject)) + 
+    geom_line(aes(), show.legend = F) +   # Observed
+    geom_line(aes(y = predicted), col = "dodgerblue", show.legend = F) +  # Predicted
+    facet_wrap(~subject, nrow=6) + 
+    scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 36)) +
+    scale_y_continuous(name = "Father's Marital Love Score") +
+    theme(strip.background = element_blank(),
+          strip.text.x = element_blank())
+
+ggsave("observed_predicted_individual.png", width=12, height=5)
+```
+
+```{r fig.width=10, fig.asp=.4}
+
+predictions %>% 
+  ggplot(aes(month, predicted, group = subject)) + 
+    geom_line(aes(col = subject), show.legend = F) +
+    facet_grid(~posFactor) + 
+    scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 39)) +
+    scale_y_continuous(name = "Father's Marital Love Score", limits = c(10,100))
+
+ggsave("predicted.png", width = 10, height = 4)
+```
+
+```{r fig.width=10, fig.asp=.4}
+# get a subset of the parameter samples 
+low <- data.frame(int = unlist(codaSamples[,"lowPInt"])[seq(1,30000,50)],
+                  slope = unlist(codaSamples[,"lowPSlope"])[seq(1,30000,50)])
+
+med <- data.frame(int = unlist(codaSamples[,"medPInt"])[seq(1,30000,50)],
+                  slope = unlist(codaSamples[,"medPSlope"])[seq(1,30000,50)])
+
+high <- data.frame(int = unlist(codaSamples[,"highPInt"])[seq(1,30000,50)],
+                   slope = unlist(codaSamples[,"highPSlope"])[seq(1,30000,50)])
+
+samplesFromChains <- bind_rows("Low" = low, "Medium" = med, "High" = high, .id = "posFactor")
+
+samplesFromChains <- samplesFromChains %>%
+  mutate(id = row_number(),
+         t1 = int - 3 * slope,
+         t2 = int + 36 * slope,
+         posFactor = ordered(posFactor, levels = c("Low", "Medium", "High"))) %>%
+  gather(month, score, t1:t2) %>%
+  mutate(month = recode(month, "t1"=-3, "t2"=36))
+
+# get the mean intercept and slope for each postitivity group
+means <- resultTable %>% 
+  filter(str_detect(parameter, "^(high|med|low)P(Int|Slope)")) %>%
+  transmute(posFactor = str_extract(parameter, "(low|med|high)"),
+            parameter = str_extract(parameter, "(Int|Slope)") %>% str_to_lower(),
+            mean = mean) %>%
+  spread(parameter, mean) %>%
+  mutate(id = row_number(),
+         t1 = int - 3 * slope,
+         t2 = int + 36 * slope,
+         posFactor = recode_factor(posFactor, 
+           low = "Low", med = "Medium", high = "High", .ordered = T)) %>%
+  gather(month, score, t1:t2) %>%
+  mutate(month = recode(month, "t1"=-3, "t2"=36))
+
+# plot 
+samplesFromChains %>%
+  ggplot(aes(x = month, y = score, group = id, color = posFactor)) +
+  geom_line(alpha = .01) +
+  geom_line(data = means, size = 1) +
+  facet_wrap(~ posFactor) +
+  scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 39)) +
+  scale_y_continuous(name = "Father's Marital Love Score", limits = c(10,100))
+
+ggsave("predicted_mean.png", width = 10, height = 4)
+```
+
+## Calculate DIC
+Deviance Information Criterion quantifies how well the model reduces uncertainty in future predictions and can be used to compare models in terms of their relative goodness of fit. It accounts for model complexity and model fit. 
+Lower DIC = better model performance in predicting future values. 
+
+  - DIC>5: some difference, 
+  - DIC>10: considerable difference.
+
+```{r}
+dicSamples <- dic.samples(mdl, nIter, thin = thinning, "pD")
+show(dicSamples)
+```
+
+## Fit the same (?) model with stan + brms
+There are some packages that try to make fitting bayesian models easier. One of them is brms. 
+Note that this uses [Stan](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started) instead of jags, so you will have to install Stan first.
+
+```{r}
+library(brms)   # requires rstan 
+
+fit <- brm(score ~ posFactor*month + (1 + month|subject), 
+           data = loveData,
+           prior = c(
+             set_prior("normal(0,100)", class = "Intercept"),
+             set_prior("normal(0,100)", class = "b"),
+             set_prior("uniform(0,100)", class = "sd"),
+             set_prior("uniform(0,100)", class = "sd", group = "subject")
+           ),
+           warmup = 1000, iter = nIter, chains = 6, thin = thinning)
+```
+
+```{r}
+summary(fit) 
+plot(fit)
+
+# use launch_shiny() for an interactive app for model exploration
+# launch_shiny(fit) 
+
+predictions <- loveData %>% 
+  mutate(predicted = predict(fit)[,"Estimate"])
+```
+
+```{r}
+
+# plot subsample of subjects
+# (commentet out, so same sample as above is used)
+# s <- sample(unique(loveData$subject), 49)
+
+filter(predictions, subject %in% s) %>%
+  ggplot(aes(month, score, group = subject)) + 
+    geom_line(aes(), show.legend = F) +   # Observed
+    geom_line(aes(y = predicted), col = "dodgerblue", show.legend = F) +
+    facet_wrap(~subject) + 
+    scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 36)) +
+    scale_y_continuous(name = "Father's Marital Love Score") +
+    theme(strip.background = element_blank(),
+          strip.text.x = element_blank())
+```
+
+```{r}
+predictions %>%
+  ggplot(aes(month, predicted, group = subject)) + 
+    geom_line(aes(col = subject), show.legend = F) +
+    facet_grid(~posFactor) +
+    scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 36)) +
+    scale_y_continuous(name = "Father's Marital Love Score", limits = c(10,100))
+```
+
+```{r}
+marginal_effects(fit)
+```
+
+## As a comparison, run the same (?) model with lme4 (i.e. non-Bayesian)
+
+```{r}
+library(lme4)
+
+fit <- lmer(score ~ posFactor*month + (1 + month|subject), data = loveData)
+summary(fit)
+```

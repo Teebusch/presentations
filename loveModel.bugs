@@ -1,0 +1,55 @@
+
+model {
+# Loop over observations
+for (i in 1:nObservations) {
+  # Likelihood Function (assumed data generating distribution), Eq. 1
+  score[i] ~ dnorm(betas[subject[i],1] + betas[subject[i],2]*time[i], 1/pow(sdLevel1Error,2))
+}
+
+# Loop over subjects
+for (j in 1:nSubjects) {
+  level2MeanVector[j,1] <- medPInt + betaLowPInt*lowPos[j] + betaHighPInt*highPos[j]
+  level2MeanVector[j,2] <- medPSlope + betaLowPSlope*lowPos[j] + betaHighPSlope*highPos[j]
+
+  # Level 2 bivariate distribution of intercepts and slopes, Eq. 6
+  betas[j,1:2] ~ dmnorm(level2MeanVector[j,1:2], interpersonPrecisionMatrix[1:2,1:2])
+}
+
+# Prior distributions
+medPInt ~ dnorm(0,0.01)
+medPSlope ~ dnorm(0,0.01)
+
+betaLowPInt ~ dnorm(0,0.01)
+betaLowPSlope ~ dnorm(0,0.01)
+betaHighPInt ~ dnorm(0,0.01)
+betaHighPSlope ~ dnorm(0,0.01)
+
+sdLevel1Error ~ dunif(0,100)
+sdIntercept ~ dunif(0,100)
+sdSlope ~ dunif(0,100)
+corrIntSlope ~ dunif(-1,1)
+
+# Transforming model parameters
+interpersonCovMatrix[1,1] = pow(sdIntercept,2)
+interpersonCovMatrix[2,2] = pow(sdSlope,2)
+interpersonCovMatrix[1,2] = corrIntSlope * sdIntercept * sdSlope
+interpersonCovMatrix[2,1] = interpersonCovMatrix[1,2]
+interpersonPrecisionMatrix <- inverse(interpersonCovMatrix)
+
+# We also keep track of other parameters of interest
+# (not obligatory for the model to run, but useful for us)
+
+# High and low positivity slopes and intercepts
+lowPInt <- medPInt + betaLowPInt
+highPInt <- medPInt + betaHighPInt
+lowPSlope <- medPSlope + betaLowPSlope
+highPSlope <- medPSlope + betaHighPSlope
+
+# planned comparisons - contrasts between low, mid, and high intercepts and slopes
+c_highLowPInt <- betaHighPInt - betaLowPInt
+c_medLowPInt <- - betaLowPInt
+c_highMedPInt <- betaHighPInt
+c_highLowPSlope <- betaHighPSlope - betaLowPSlope
+c_medLowPSlope <- - betaLowPSlope
+c_highMedPSlope <- betaHighPSlope
+}
