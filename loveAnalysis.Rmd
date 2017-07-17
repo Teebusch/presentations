@@ -6,12 +6,16 @@ date: "July 19 2017"
 output:
   html_notebook:
     fig_width: 10
+    highlight: pygments
     theme: journal
+    toc: yes
   html_document:
     fig_width: 10
     toc: yes
 subtitle: ExpORL Journal Club
 ---
+
+## Introduction
 
 This is a Bayesian Growth Curve analysis, following the tutorial by [Oravecz & Muth (2017)](https://doi.org/10.3758/s13423-017-1281-0). The paper's accompanying git repository can be found [here](https://git.psu.edu/zzo1/FittingGCMBayesian). In some places the code has been adapted to be more concise.
 
