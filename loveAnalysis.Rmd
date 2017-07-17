@@ -73,7 +73,7 @@ loveData %>%
     scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 36)) +
     scale_y_continuous(name = "Father's Marital Love Score", limits = c(10,100))
 
-ggsave("observed.png", width = 10, height = 4)
+ggsave("out/observed.png", width = 10, height = 4)
 ```
 
 ## Prepare data for JAGS
@@ -217,7 +217,7 @@ Sys.time() - t # How long did it take to get the samples?
 If needed, save and load samples from previous run of the model to save time.
 
 ```{r, eval=FALSE}
-save(codaSamples, file = "loveModelSamples.save", compress = T)
+save(codaSamples, file = "out/loveModelSamples.save", compress = T)
 load("loveModelSamples.save")
 ```
 
@@ -354,7 +354,7 @@ predictions %>%
     theme(strip.background = element_blank(),
           strip.text.x = element_blank())
 
-ggsave("observed_predicted_individual.png", width=12, height=5)
+ggsave("out/observed_predicted_individual.png", width=12, height=5)
 ```
 
 ```{r fig.width=10, fig.asp=.4}
@@ -366,7 +366,7 @@ predictions %>%
     scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 39)) +
     scale_y_continuous(name = "Father's Marital Love Score", limits = c(10,100))
 
-ggsave("predicted.png", width = 10, height = 4)
+ggsave("out/predicted.png", width = 10, height = 4)
 ```
 
 ```{r fig.width=10, fig.asp=.4}
@@ -414,7 +414,7 @@ samplesFromChains %>%
   scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 39)) +
   scale_y_continuous(name = "Father's Marital Love Score", limits = c(10,100))
 
-ggsave("predicted_mean.png", width = 10, height = 4)
+ggsave("out/predicted_mean.png", width = 10, height = 4)
 ```
 
 ## Calculate DIC
