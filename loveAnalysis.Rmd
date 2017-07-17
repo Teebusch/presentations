@@ -22,6 +22,8 @@ library(tidyverse)
 library(stringr)    
 library(rjags)
 
+knitr::opts_chunk$set(results = "hold")
+
 # Set ggplot theme for the this notebook
 theme_set(theme_grey() + 
           theme(panel.grid.major.y = element_blank(), 
@@ -184,7 +186,7 @@ nChains <- 6                # how many sampling chains
 nIter <- ceiling((postSamples * thinning)/nChains)
 
 # initialize the model
-mdl <- jags.model("loveModel.bugs", jagsData, n.chains = nChains, n.adapt = nAdapt, inits = inits)
+mdl <- jags.model("loveModel.bugs", jagsData, n.chains = nChains, n.adapt = nAdapt, inits = inits, quiet = T)
 ```
 
 ## Get the samples
@@ -194,14 +196,15 @@ We sample from our parameters posterior distribution via the MCMC algorithm impl
 t <- Sys.time()
 
 # run run burn-in iterations
-update(mdl, n.iter = nBurnIn)
+update(mdl, n.iter = nBurnIn, progress.bar = "gui")
 
 # sample from the posterior distribution
 codaSamples <- coda.samples(mdl,
                             variable.names = parameters,
                             n.iter = nIter,
                             thin = thinning,
-                            seed = 5)
+                            seed = 5,
+                            progress.bar = "gui")
 
 Sys.time() - t # How long did it take to get the samples?
 ```
@@ -209,9 +212,9 @@ Sys.time() - t # How long did it take to get the samples?
 ## Save samples for later use
 If needed, save and load samples from previous run of the model to save time.
 
-```{r}
-# save(codaSamples, file = "loveModelSamples.save", compress = T)
-# load("loveModelSamples.save")
+```{r, eval=FALSE}
+save(codaSamples, file = "loveModelSamples.save", compress = T)
+load("loveModelSamples.save")
 ```
 
 ## Check convergence of chains
@@ -418,7 +421,7 @@ Lower DIC = better model performance in predicting future values.
   - DIC>10: considerable difference.
 
 ```{r}
-dicSamples <- dic.samples(mdl, nIter, thin = thinning, "pD")
+dicSamples <- dic.samples(mdl, nIter, thin = thinning, "pD", progress.bar = "gui")
 show(dicSamples)
 ```
 
@@ -438,12 +441,18 @@ fit <- brm(score ~ posFactor*month + (1 + month|subject),
              set_prior("uniform(0,100)", class = "sd", group = "subject")
            ),
            warmup = 1000, iter = nIter, chains = 6, thin = thinning)
+
+# Note: There is a warning message about the boundaries for the uniform priors not being set. 
+# However, setting them, via set_prior("uniform(0,100)", lb = 0, ub = 100, class = "sd"), creates
+# an Error, indicating that setting boundaries is not possible in this case. The model seems to 
+# run fine without the boundaries, sespite the error message.
 ```
 
 ```{r}
 summary(fit) 
-plot(fit)
 
+# use plot() for graphical convergence diagnostics
+# plot(fit)
 # use launch_shiny() for an interactive app for model exploration
 # launch_shiny(fit) 
 
@@ -451,8 +460,7 @@ predictions <- loveData %>%
   mutate(predicted = predict(fit)[,"Estimate"])
 ```
 
-```{r}
-
+```{r fig.width=12, fig.height = 5}
 # plot subsample of subjects
 # (commentet out, so same sample as above is used)
 # s <- sample(unique(loveData$subject), 49)
@@ -461,14 +469,14 @@ filter(predictions, subject %in% s) %>%
   ggplot(aes(month, score, group = subject)) + 
     geom_line(aes(), show.legend = F) +   # Observed
     geom_line(aes(y = predicted), col = "dodgerblue", show.legend = F) +
-    facet_wrap(~subject) + 
+    facet_wrap(~subject, nrow=6) + 
     scale_x_continuous(name = "Months After Baby was Born", breaks = c(-3, 0, 3, 9, 36)) +
     scale_y_continuous(name = "Father's Marital Love Score") +
     theme(strip.background = element_blank(),
           strip.text.x = element_blank())
 ```
 
-```{r}
+```{r fig.width=10, fig.asp=.4}
 predictions %>%
   ggplot(aes(month, predicted, group = subject)) + 
     geom_line(aes(col = subject), show.legend = F) +
@@ -486,6 +494,6 @@ marginal_effects(fit)
 ```{r}
 library(lme4)
 
-fit <- lmer(score ~ posFactor*month + (1 + month|subject), data = loveData)
-summary(fit)
+lmerfit <- lmer(score ~ posFactor*month + (1 + month|subject), data = loveData)
+summary(lmerfit)
 ```
