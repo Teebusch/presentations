@@ -1,6 +1,6 @@
 ## Code and Slides for ExpORL Journal Club, July 19th 2017
 
-In this edition of the journal club we will talk about love, babies, and Bayesian statistics. The paper carefully takes us through the steps involved in specifying, fitting and summarizing a growth curve model (GCM) in a Bayesian framework. GCMs are useful in developmental research and fit naturally in the Bayesian framework. This is my first contact with Bayesian statistics and, although the paper provides a very nice introduction, they leave a lot of questions unanswered, which I would like to discuss.
+In this edition of the journal club we will talk about love, babies, and Bayesian statistics. The paper carefully takes us through the steps involved in specifying, fitting and summarizing a growth curve model (GCM) in a Bayesian framework. GCMs are useful in developmental research and fit naturally in the Bayesian framework. This is my first contact with Bayesian statistics and, although the paper provides a very nice introduction, it leaves a lot of questions, which I would like to discuss.
 
 The paper we discuss is *Oravecz & Muth (2017). Fitting growth curve models in the Bayesian framework. Psychonomic Bulletin and Review*. The paper can be found [here](https://doi.org/10.3758/s13423-017-1281-0). The paper's accompanying git repository is [here](https://git.psu.edu/zzo1/FittingGCMBayesian). 
 
