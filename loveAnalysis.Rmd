@@ -4,13 +4,13 @@ title: Oravecz & Muth (2017). Fitting growth curve models in the Bayesian framew
 author: "Tobias Busch"
 date: "July 19 2017"
 output:
+  html_document:
+    fig_width: 10
+    toc: yes
   html_notebook:
     fig_width: 10
     highlight: pygments
     theme: journal
-    toc: yes
-  html_document:
-    fig_width: 10
     toc: yes
 subtitle: ExpORL Journal Club
 ---
@@ -26,7 +26,7 @@ library(tidyverse)
 library(stringr)    
 library(rjags)
 
-knitr::opts_chunk$set(results = "hold")
+knitr::opts_chunk$set(hold=T)
 
 # Set ggplot theme for the this notebook
 theme_set(theme_grey() + 

@@ -16,7 +16,6 @@ HDIofMCMC = function( sampleVec , HDImass=0.95 ) {
   #     is a vector of representative values from a probability distribution.
   #   HDImass is a scalar between 0 and 1, indicating the mass within the credible
   #     interval that is to be estimated.
-  # Value:
   #   HDIlim is a vector containing the limits of the HDI
   sortedPts = sort( sampleVec )
   ciIdxInc = ceiling( HDImass * length( sortedPts ) )
