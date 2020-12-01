@@ -7,6 +7,33 @@ Slides and source from my presentations
 
 This talk is about how writing an R package has helped me leave my comfort zone and level up my R programming skills. The code I write as a researcher is mostly single-user and single-use. Writing and publishing code meant for others has helped me break old habits and get a better grasp of software engineering. R has a very streamlined ecosystem for package development that makes understanding and following best practices easy. I will talk about the things I have learned, why I think writing a package should be a rite of passage for any aspiring research software engineer, and why R is a great tool for this.
 
+## Workshop: Let's build an Augmented Reality Web App!
+
+- *8 January 2020, UiO Research Bazaar, Univrsity of Oslo, Norway [link](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/webapp.html)*
+- *15 December 2019, KoLab Hackerspace, Mechelen, Belgium [link](https://www.meetup.com/Ko-Lab-mechelen/events/266161193/)*
+
+AAugmented reality (AR) apps add a virtual layer on top of the real world. This allows you to catch Pokémon in your backyard, but it also has serious potential for hacking your environment: You can use AR to share information where it is most useful, create fantastic experiences that merge the real and the virtual, or simply label your storage cabinets in the nerdiest way possible. Once you know how to augment the real world, the options are endless—and it is a lot easier than you think!
+
+In this workshop we will learn how to place virtual objects and annotations in the real world, so that they can be seen using a smartphone as a 'magic window'. We will learn how to animate things, how to add interactivity, and how to get data into AR. Finally, there will be a mini-hackathon where you use your new skills to build the AR web app of your (humble) dreams.
+
+We will build everything with open source web technology. All you need is a computer with a browser. The app will be hosted online and will run in any modern browser. The user will need only a smartphone to use it—no installation required.
+
+*In this workshop you will …*
+
+- Learn how to use the A-Frame JavaScript framework to create 3D scenes for browser-based VR and AR, how to add and style text, simple 3D shapes, and pre-created 3D models, and how to add animation and interactivity.
+
+- Get a basic understanding of how to bind data to A-Frame objects in order to create data-driven AR experiences.
+
+- Learn how to turn an A-frame scene into an AR app, how to use AR markers to anchor AR objects in the real world, and how to use QR codes to make accessing your app seamless.
+
+At the end of the workshop you will have a functioning AR app that will be hosted on the internet.
+
+This course is for anyone who wants to take their first steps with creating augmented reality experiences. It will be beginner-friendly. Most of the code we write will be relatively simple HTML and JavaScript. You do not need experience with HTML or JavaScript, but some programming experience is highly recommended.
+
+
+The code for this workshop lives [in its own repository](https://github.com/Teebusch/arworkshop). The workshop uses [this repl.it](https://repl.it/@Teebusch/arworkshop).
+There are a handful of [slides on Google Docs](https://docs.google.com/presentation/d/1w6RXi930NecEbSmyv7L5u3LIiuqUiUfcP-Kfew72AvU/edit?usp=sharing).
+
 ## Design Thinking and Making
 
 *2018, KU Leuven*
@@ -28,6 +55,8 @@ The paper we discuss is *Oravecz & Muth (2017). Fitting growth curve models in t
 
 
 ## Conference Presentations during my PhD
+
+*Slides available on request.*
 
 #### CI2018
 Antwerp, Belgium, June 2018  
