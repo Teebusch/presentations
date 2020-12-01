@@ -9,10 +9,10 @@ This talk is about how writing an R package has helped me leave my comfort zone 
 
 ## Workshop: Let's build an Augmented Reality Web App!
 
-- *8 January 2020, UiO Research Bazaar, Univrsity of Oslo, Norway [link](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/webapp.html)*
-- *15 December 2019, KoLab Hackerspace, Mechelen, Belgium [link](https://www.meetup.com/Ko-Lab-mechelen/events/266161193/)*
+- *8 January 2020, UiO Research Bazaar, Univrsity of Oslo, Norway [(link)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/webapp.html)*
+- *15 December 2019, KoLab Hackerspace, Mechelen, Belgium [(link)](https://www.meetup.com/Ko-Lab-mechelen/events/266161193/)*
 
-AAugmented reality (AR) apps add a virtual layer on top of the real world. This allows you to catch Pokémon in your backyard, but it also has serious potential for hacking your environment: You can use AR to share information where it is most useful, create fantastic experiences that merge the real and the virtual, or simply label your storage cabinets in the nerdiest way possible. Once you know how to augment the real world, the options are endless—and it is a lot easier than you think!
+Augmented reality (AR) apps add a virtual layer on top of the real world. This allows you to catch Pokémon in your backyard, but it also has serious potential for hacking your environment: You can use AR to share information where it is most useful, create fantastic experiences that merge the real and the virtual, or simply label your storage cabinets in the nerdiest way possible. Once you know how to augment the real world, the options are endless—and it is a lot easier than you think!
 
 In this workshop we will learn how to place virtual objects and annotations in the real world, so that they can be seen using a smartphone as a 'magic window'. We will learn how to animate things, how to add interactivity, and how to get data into AR. Finally, there will be a mini-hackathon where you use your new skills to build the AR web app of your (humble) dreams.
 
