@@ -17,7 +17,7 @@ The paper we discuss is *Oravecz & Muth (2017). Fitting growth curve models in t
 
 *This* repository contains the slides of my presentation and my own version of the analysis. In some places the code has been adapted to be more concise.
 
-  + The slides are in `jc-tbusch-19-7-bayesgcm.pdf`.
+  + The slides are in `Journal-Club-Bayes.pdf`.
   + The main part of the analysis is in the R Notebook `loveAnalysis.Rmd`. You can view a live version of it [here](http://rpubs.com/teebusch/jc-bayesgcm).
 
 
