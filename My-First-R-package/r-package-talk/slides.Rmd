@@ -1,0 +1,143 @@
+---
+title: "My first R package"
+author: "Tobias Busch"
+institute: "University of Oslo"
+date: "2020/12/02"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+      ratio: '16:10'
+      slideNumberFormat: ''
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#8C4660",
+  white_color = "#F9F9F9",
+  header_font_google = google_font("Noto Sans SC", "400"),
+  text_font_google   = google_font("Work Sans", "300", "300i"),
+  code_font_google   = google_font("IBM Plex Mono")
+)
+```
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+class: inverse, center, middle
+# Publishing
+---
+
+## Usage
+
+```{r comment='#', R.options = list(width = 60)}
+library(noah)
+pseudonymize(1:10)
+pseudonymize(1:10, .alliterate = TRUE)
+```
+
+---
+
+```{r eval=FALSE}
+install.packages(c("devtools", "usethis", 
+                   "roxygen2", "testthat"))
+
+usethis::create_package("mycoolpackage")
+
+usethis::use_git() 
+usethis::use_github() 
+
+usethis::use_r("foo")
+devtools::load_all(".")  # or Ctrl + Shift + L
+
+usethis::use_test()           
+devtools::test()    # or Ctrl + Shift + T
+devtools::check()   # or Ctrl + Shift + E
+
+usethis::use_github_action_check_standard()
+usethis::use_coverage("codecov")
+
+# create a roxygen skeleton 
+# with Ctrl + Alt + Shift + R
+
+devtools::document()  # or Ctrl + Shift + D
+```
+
+```{r eval = FALSE}
+greeting <- function(name) {
+  paste("Hello", name, "!")
+}
+```
+---
+
+```{r eval=FALSE, R.options = list(width = 60)}
+
+install.packages(c("devtools", "usethis"))
+
+usethis::create_package("mycoolpackage") # edit DESCRIPTION!
+usethis::use_git() 
+usethis::use_github() 
+usethis::use_r("foo")        # create a file, write function(s)
+devtools::load_all(".")      # load all functions (Ctrl + Shift + L)
+usethis::use_test()          # write test
+devtools::test()             # run all tests
+devtools::check()            # run CRAN check (Ctrl + Shift + E)
+devtools::document()         # build documentation (Ctrl + Shift + D)
+usethis::use_package("bar")  # declare dependencies, then use pck::fun()
+
+usethis::use_github_action_check_standard()  # set up CI
+usethis::use_coverage("codecov")             # set up test coverage
+
+usethis::use_readme_rmd()              # edit readme, use R code
+devtools::build_readme()               # convert Rmd to md
+usethis::use_mit_license("Your Name")  # pick a license
+usethis::use_pkgdown()                 # build package website
+usethis::use_github_action("pkgdown")  # deploy site to Github pages
+ 
+devtools::install("path/package")      # install from GitHub
+devtools::install_github("user/repo")  # install from local
+install.packages("mycoolpackage")      # install from CRAN
+```
+
+---
+
+```{r eval = FALSE}
+#' Greets someone
+#'
+#' @param name a person to greet  
+#'
+#' @return a greeting
+#' @export
+greeting <- function(name) {
+  greeting <- paste("Hello", name, "!")
+  stringr::str_to_upper(greeting)
+}
+
+
+test_that("greeting() works", {
+  expect_equal(greeting("RSEs"), "Hello RSEs!")
+})
+
+
+```
+
+---
+
+```bash
+git checkout --orphan gh-pages
+git rm -rf .
+git commit --allow-empty -m 'Initial gh-pages commit'
+git push origin gh-pages
+git checkout master
+```
+
+```{r eval = FALSE}
+usethis::use_pkgdown()
+usethis::use_github_action("pkgdown")
+```
