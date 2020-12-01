@@ -110,6 +110,10 @@ May 2017, KU Leuven
 
 *Slides available on request.*
 
+#### Cochlear Science and Research Seminar 'Connected Health'
+Berlin, 24 September 2018  
+How "Big Data" can support patient counselling - What can we learn from Data Logs?
+
 #### CI2018
 Antwerp, Belgium, June 2018  
 Can CI data logs predict children's vocabulary?
@@ -160,4 +164,11 @@ CI user’s auditory diet. (poster, selected for oral presentation)
 #### Third International Conference on Cognitive Hearing Science for Communication (CHSCOM)
 Linköping, Sweden, 2015  
 Cochlear implant user’s auditory diet. (poster presentation)
+
+
+## Other Presentations
+
+#### Workshop: CI Data Logging In Depth
+Vienna, 26 September 2018  
+Workshop for Cochlear ClinTechs 
 
