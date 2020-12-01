@@ -24,7 +24,7 @@ The paper we discuss is *Oravecz & Muth (2017). Fitting growth curve models in t
 ## Conference Presentations during my PhD
 
 #### CI2018
-Antwerp, Belgium, June 2018
+Antwerp, Belgium, June 2018  
 Can CI data logs predict children's vocabulary?
 
 #### Hearing Across the Lifespan (HeAL)
