@@ -23,54 +23,54 @@ The paper we discuss is *Oravecz & Muth (2017). Fitting growth curve models in t
 
 ## Conference Presentations during my PhD
 
-### CI2018
+#### CI2018
 Antwerp, Belgium, June 2018
 Can CI data logs predict children's vocabulary?
 
-### Hearing Across the Lifespan (HeAL)
+#### Hearing Across the Lifespan (HeAL)
 Cernobbio, Italy, June 2018  
 Can data logs predict receptive vocabulary of children with CI?
-### B-Audio meeting
+#### B-Audio meeting
 Louvain-la-Neuve, Belgium, 2017   
 Linking natural auditory environment and language development in children with cochlear implant. 
 
-### iCARE conference
+#### iCARE conference
 Leuven, Belgium, 2017  
 Does the auditory environment influence the language development of children with CI? (poster presentation)
 
-### Real-world assessment of hearing aids and listening behavior
+#### Real-world assessment of hearing aids and listening behavior
 London, UK, 2017  
 Using automatic data logging to investigate the auditory environment of children with cochlear implant.
 
-### Workshop on Infant Language Development (WILD)
+#### Workshop on Infant Language Development (WILD)
 Bilbao, Spain, 2017  
 Does the auditory environment of children with cochlear implant influence their language development? (poster presentation)
 
-### Fourth International Conference on Cognitive Hearing Science for Communication (CHSCOM)
+#### Fourth International Conference on Cognitive Hearing Science for Communication (CHSCOM)
 Linköping, Sweden, 2017  
 Does the auditory environment of children with cochlear implant influence their language development? (poster, selected for oral presentation)
 
-### Hearing Across the Lifespan (HeAL)
+#### Hearing Across the Lifespan (HeAL)
 Cernobbio, Italy, 2016  
 Auditory environment across the lifespan of cochlear implant users: Insights from data logging. 
 
-### Measuring Behavior
+#### Measuring Behavior
 Dublin, Ireland, 2016  
 Auditory environment across the lifespan of cochlear implant users: Insights from data logging.
 
-### Jahrestagung für Akustik (DAGA)
+#### Jahrestagung für Akustik (DAGA)
 Aachen, Germany, 2016  
 The acoustical environment of cochlear implant users.
 
-### B-Audio meeting
+#### B-Audio meeting
 Namur, Belgium, 2015  
 Cochlear implant user’s auditory diet: Insights from data logging.
 
-### 12th European Symposium on Pediatric Cochlear Implants (ESPCI)
+#### 12th European Symposium on Pediatric Cochlear Implants (ESPCI)
 Toulouse, France 2015  
 CI user’s auditory diet. (poster, selected for oral presentation)
 
-### Third International Conference on Cognitive Hearing Science for Communication (CHSCOM)
+#### Third International Conference on Cognitive Hearing Science for Communication (CHSCOM)
 Linköping, Sweden, 2015  
 Cochlear implant user’s auditory diet. (poster presentation)
 
