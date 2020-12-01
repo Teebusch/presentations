@@ -65,6 +65,16 @@ This course is for anyone who wants to take their first steps with creating augm
 The code for this workshop lives [in its own repository](https://github.com/Teebusch/arworkshop). The workshop uses [this repl.it](https://repl.it/@Teebusch/arworkshop).
 There are a handful of [slides on Google Docs](https://docs.google.com/presentation/d/1w6RXi930NecEbSmyv7L5u3LIiuqUiUfcP-Kfew72AvU/edit?usp=sharing).
 
+
+## What Makes a Difference?
+
+*April 2020, nowhere*
+
+In 'What Makes a Difference?' beschäftige ich mit der Frage was eine Differenz, einen Unterschied, ausmacht. Es ist ein kurzes visuelles Essay inspiriert von den Werken Scott McClouds und Nick Sousanis‘.
+Differenzen begegnen uns auf vielen Ebenen: Die Aufrechterhaltung der Differenz von Innen und Außen ist oberstes Ziel unseres Körpers. In der Gesellschaft sind es die 'feinen Unterschiede', die die Menschen, gerade wegen ihrer Feinheit, nahezu unüberwindlich voneinander trennen. In der Wissenschaft gilt der "significant difference" als der erbrachte Beweis.
+In 'What Makes a Difference?' betrachte ich Differenz aus der Sicht der Kognitionswissenschaft. Ich zeige, dass Differenzen manchmal 'just noticeable' sind, dass sie unsere Neuronen automatisch feuern lassen, dass wir Differenzen sehen wo keine sind, und keine Differenzen sehen wo sie existieren. Ich komme zu dem Schluss, dass es das Gehirn ist, dass den Unterschied macht.
+Die Umsetzung ist minimalistisch und auf das wesentliche reduziert. Dies ist zum einen zeitlichen und technischen Beschränkungen geschuldet, zum anderen erinnert es an die Ästhetik wahrnehmungspsychologischer Experimente, in denen alles nicht Essenzielle entfernt wird bis nur noch das übrig bleibt, was zum Testen der Hypothese erforderlich ist. Statt eines Buchformats oder einer Infografik im Posterformat handelt es sich um das einer PowerPoint-Präsentation was ebenfalls an eine wissenschaftliche Präsentation erinnert.
+
 ## Design Thinking and Making
 
 *2018, KU Leuven*
