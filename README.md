@@ -81,7 +81,7 @@ Die Umsetzung ist minimalistisch und auf das wesentliche reduziert. Dies ist zum
 
 These presentations were for a course on Design Thinking and Making. The course was centered around critical design for the library of the future. These are the slides I made as part of the course assignments.
 
-## Journal Club Bayes - Code and Slides for ExpORL Journal Club 
+## Journal Club: Bayesian Growth Curve Modeling 
 
 *July 19th 2017, KU Leuven*
 
