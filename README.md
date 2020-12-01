@@ -7,9 +7,40 @@ Slides and source from my presentations
 
 This talk is about how writing an R package has helped me leave my comfort zone and level up my R programming skills. The code I write as a researcher is mostly single-user and single-use. Writing and publishing code meant for others has helped me break old habits and get a better grasp of software engineering. R has a very streamlined ecosystem for package development that makes understanding and following best practices easy. I will talk about the things I have learned, why I think writing a package should be a rite of passage for any aspiring research software engineer, and why R is a great tool for this.
 
+## Data Visualization Design
+
+*9 January 2020, Uio Research Bazaar, University of Oslo, Norway [(link)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/visualisation.html)*
+
+**co-hosted with Désirée Treichler**
+
+*Slides available on request*
+
+In this workshop we will approach data visualization as a design problem, and learn how to solve this problem systematically. You will learn cognitive and design principles that help you understand what works and why, and how to explore different design solutions more efficiently.
+
+Good data visualization will help you tell the story of your research and make your papers and presentations stand out. Yet, most researchers are never really taught how to visualize data. Instead, their design process is based on intuition, copying others, and try-and-error. This is a waste of time and often produces ineffective results.
+
+In this workshop we will approach data visualization as a design problem, and learn how to solve this problem more systematically. You will see why visualization is a powerful way to communicate your data. You will learn design principles that help you understand what works and why, and practice hands-on how to explore design solutions more efficiently.
+
+*Learning outcomes*
+Participants will:
+
+- Learn about the value of data visualization and when and why to visualize data.
+- Learn about the hidden thinking behind good data visualization: understanding the context of the visualization (e.g., audience, presentation format) and how to use editorial thinking to decide what to show.
+- Learn how to approach a data set for visualization, e.g., understand different types of data and the implications for visual encoding.
+- Learn about different ways to encode data visually, and understand how data can be encoded more effectively by following basic principles of perception and visual design (e.g., signal detection theory, Gestalt laws)
+- Understand the different elements of a chart and how to use them to make more effective visualizations (e.g., annotations, color, composition)
+
+We will focus on explanatory data visualizations (e.g., for posters and presentations) and relatively simple types of data that can be found across most disciplines. We will *not* cover exploratory data analysis, bespoke data visualizations for scientific discovery, domain-specific data types (e.g., text, networks, high-dimensional data), algorithms (e.g., dimensionality reduction, clustering), or advanced visualization techniques (e.g., interaction, animation).
+
+*Prerequisites*
+No programming experience is required (and no artistic ability is required, either). However, you should be familiar with fundamental statistical concepts and chart types.
+
+*Target audience*
+The course is for researchers and graduate students who want to communicate their research more effectively, for example in papers, posters, presentations, or to the general public. Generally, it may be useful to anyone who uses data to inform, support decision making, and motivate change.
+
 ## Workshop: Let's build an Augmented Reality Web App!
 
-- *8 January 2020, UiO Research Bazaar, Univrsity of Oslo, Norway [(link)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/webapp.html)*
+- *8 January 2020, UiO Research Bazaar, University of Oslo, Norway [(link)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/webapp.html)*
 - *15 December 2019, KoLab Hackerspace, Mechelen, Belgium [(link)](https://www.meetup.com/Ko-Lab-mechelen/events/266161193/)*
 
 Augmented reality (AR) apps add a virtual layer on top of the real world. This allows you to catch Pokémon in your backyard, but it also has serious potential for hacking your environment: You can use AR to share information where it is most useful, create fantastic experiences that merge the real and the virtual, or simply label your storage cabinets in the nerdiest way possible. Once you know how to augment the real world, the options are endless—and it is a lot easier than you think!
@@ -52,6 +83,17 @@ The paper we discuss is *Oravecz & Muth (2017). Fitting growth curve models in t
 
   + The slides are in `Journal-Club-Bayes.pdf`.
   + The main part of the analysis is in the R Notebook `loveAnalysis.Rmd`. You can view a live version of it [here](http://rpubs.com/teebusch/jc-bayesgcm).
+
+
+## Lectures
+
+#### Environmental Influences on Language Development in Children with Hearing Loss
+Part of MSc-level course in special needs education (SPED4001)  
+18 November 2020, University of Oslo (online)
+
+#### Data Logging & Sound Classification in Hearing Aids and CIs 
+Part of MSc-level course in Audiology  
+May 2017, KU Leuven
 
 
 ## Conference Presentations during my PhD
