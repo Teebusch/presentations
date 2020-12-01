@@ -106,6 +106,17 @@ Part of MSc-level course in Audiology
 May 2017, KU Leuven
 
 
+## The Carpentries Teaching
+
+- October 2020 - R for Ecologists, University of Oslo
+- January 2020 - R for Reproducible Scientific Analysis, University of Oslo
+- November 2019 - R for Reproducible Scientific Analysis, University of Oslo
+
+### As Helper:
+
+- February 2020 - Programming with Python (Intermediate), University of Oslo
+- September 2019 - Plotting and Programming in Python, University of Oslo
+
 ## Conference Presentations during my PhD
 
 *Slides available on request.*
