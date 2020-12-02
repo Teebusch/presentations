@@ -1,5 +1,5 @@
 # Presentations
-A list of presentations, lectures, workshops that I have given. Slides and source code for some of them cha be found in this repository. Others are available on rrequest.
+A list of presentations, lectures, and workshops that I have given. Slides and source code for some of them cha be found in this repository. Others are available on rrequest.
 
  ## My First R Package
 
