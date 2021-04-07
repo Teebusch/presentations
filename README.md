@@ -1,11 +1,35 @@
 # Presentations
-A list of presentations, lectures, and workshops that I have given. Slides and source code for some of them cha be found in this repository. Others are available on rrequest.
 
- ## My First R Package
+A list of presentations, lectures, and workshops that I have given. Slides and source code for some of them cha be found in this repository. Others are available on request.
 
- *Nordic RSE get together, December 2nd 2020, online [(link)](https://nordic-rse.org/events/2020-online-get-together/my-first-r-package/)*
+## 10 Cool Things About R
+ 
+*ISP ComPros Research Group Meeting at UiO, April 6th, 2021*
+
+A 90 minutes long hands-on introduction to R and why you should or should not learn it. A pretty version of the speaker notes / handout is available on [hack.md](https://hackmd.io/@teebusch/10-cool-things-about-R).
+
+#### What will we do?
+
+- 90 minutes - brief introduction to R
+- Provide motivation for learning R (or for not learning R)
+- Learn 10 cool things about R
+- Hands-on mini data analysis demo to demonstrate the power of R
+
+#### Take aways
+
+- Is R for you?
+- Basic data wrangling, modeling, data visualization
+- How to continue learning?
+
+---
+
+## My First R Package
+
+*Nordic RSE get together, December 2nd 2020, online [(link)](https://nordic-rse.org/events/2020-online-get-together/my-first-r-package/)*
 
 This talk is about how writing an R package has helped me leave my comfort zone and level up my R programming skills. The code I write as a researcher is mostly single-user and single-use. Writing and publishing code meant for others has helped me break old habits and get a better grasp of software engineering. R has a very streamlined ecosystem for package development that makes understanding and following best practices easy. I will talk about the things I have learned, why I think writing a package should be a rite of passage for any aspiring research software engineer, and why R is a great tool for this.
+
+---
 
 ## Workshop: Data Visualization Design
 
@@ -21,7 +45,8 @@ Good data visualization will help you tell the story of your research and make y
 
 In this workshop we will approach data visualization as a design problem, and learn how to solve this problem more systematically. You will see why visualization is a powerful way to communicate your data. You will learn design principles that help you understand what works and why, and practice hands-on how to explore design solutions more efficiently.
 
-*Learning outcomes*  
+#### Learning outcomes
+
 Participants will:
 
 - Learn about the value of data visualization and when and why to visualize data.
@@ -32,11 +57,15 @@ Participants will:
 
 We will focus on explanatory data visualizations (e.g., for posters and presentations) and relatively simple types of data that can be found across most disciplines. We will *not* cover exploratory data analysis, bespoke data visualizations for scientific discovery, domain-specific data types (e.g., text, networks, high-dimensional data), algorithms (e.g., dimensionality reduction, clustering), or advanced visualization techniques (e.g., interaction, animation).
 
-*Prerequisites*  
+#### Prerequisites
+
 No programming experience is required (and no artistic ability is required, either). However, you should be familiar with fundamental statistical concepts and chart types.
 
-*Target audience*  
+#### Target audience
+
 The course is for researchers and graduate students who want to communicate their research more effectively, for example in papers, posters, presentations, or to the general public. Generally, it may be useful to anyone who uses data to inform, support decision making, and motivate change.
+
+---
 
 ## Workshop: Let's build an Augmented Reality Web App!
 
@@ -49,7 +78,7 @@ In this workshop we will learn how to place virtual objects and annotations in t
 
 We will build everything with open source web technology. All you need is a computer with a browser. The app will be hosted online and will run in any modern browser. The user will need only a smartphone to use it—no installation required.
 
-*In this workshop you will …*
+#### In this workshop you will …
 
 - Learn how to use the A-Frame JavaScript framework to create 3D scenes for browser-based VR and AR, how to add and style text, simple 3D shapes, and pre-created 3D models, and how to add animation and interactivity.
 
@@ -65,6 +94,8 @@ This course is for anyone who wants to take their first steps with creating augm
 The code for this workshop lives [in its own repository](https://github.com/Teebusch/arworkshop). The workshop uses [this repl.it](https://repl.it/@Teebusch/arworkshop).
 There are a handful of [slides on Google Docs](https://docs.google.com/presentation/d/1w6RXi930NecEbSmyv7L5u3LIiuqUiUfcP-Kfew72AvU/edit?usp=sharing).
 
+---
+
 ## Lectures
 
 #### Environmental Influences on Language Development in Children with Hearing Loss
@@ -75,17 +106,21 @@ Part of MSc-level course in special needs education (SPED4001)
 Part of MSc-level course in Audiology  
 May 2017, KU Leuven
 
+---
 
 ## The Carpentries Teaching
 
+- March 2021 - R for Ecologists, Max Delbrück Center for Molecular Medicine Berlin (online)
 - October 2020 - R for Ecologists, University of Oslo
 - January 2020 - R for Reproducible Scientific Analysis, University of Oslo
 - November 2019 - R for Reproducible Scientific Analysis, University of Oslo
 
-### As Helper:
+#### As Helper
 
 - February 2020 - Programming with Python (Intermediate), University of Oslo
 - September 2019 - Plotting and Programming in Python, University of Oslo
+
+---
 
 ## Conference Presentations during my PhD
 
@@ -146,6 +181,7 @@ CI user’s auditory diet. (poster, selected for oral presentation)
 Linköping, Sweden, 2015  
 Cochlear implant user’s auditory diet. (poster presentation)
 
+---
 
 ## Other Presentations
 
@@ -153,6 +189,7 @@ Cochlear implant user’s auditory diet. (poster presentation)
 Vienna, 26 September 2018  
 Workshop for Cochlear ClinTechs 
 
+---
 
 ## Coursework
 
