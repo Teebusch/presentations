@@ -1,0 +1,90 @@
+---
+title: "Untitled"
+output: md_document
+---
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+#download.file('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-22/expeditions.csv', 'expeditions.csv')
+
+url <- 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-22/peaks.csv'
+
+read_csv(url) %>% 
+  mutate(climbed = case_when(
+    climbing_status == "Climbed" ~ TRUE,
+    climbing_status == "Unclimbed" ~ FALSE,
+    TRUE ~ NA
+  )) %>% 
+  select(-peak_alternative_name, -peak_id, -climbing_status) %>% 
+  relocate(climbed, .after = 2) %>% 
+  write_csv('peaks.csv')
+```
+
+```{r}
+peaks <- read_csv("peaks.csv")
+```
+
+We can have a look at the first few rows of the data with the `head()` function:
+
+```{r}
+glimpse(peaks)
+```
+
+```{r}
+skimr::skim(peaks)
+janitor::tabyl(peaks, climbed)
+```
+
+```{r}
+peaks %>% 
+  arrange(first_ascent_year) %>% 
+  head()
+```
+
+
+```{r}
+peaks %>% 
+  filter(climbing_status == "Climbed") %>% 
+  separate_rows(first_ascent_country, sep = ",") %>% 
+  count(first_ascent_country, sort = T)
+```
+```{r}
+peaks %>% 
+  filter(climbing_status == "Unclimbed" & !is.na(first_ascent_expedition_id))
+```
+```{r}
+expeditions %>%  filter(expedition_id == "LANY18301") %>% 
+  glimpse()
+```
+
+```{r}
+peaks %>% 
+  group_by(climbing_status) %>% 
+  skimr::skim()
+```
+
+
+```{r}
+df <- peaks %>% 
+  left_join(expeditions, by = c("first_ascent_expedition_id" = "expedition_id"))
+```
+
+```{r}
+skimr::skim(df)
+```
+
+```{r}
+df %>% 
+  filter(climbing_status == "Unclimbed" && !is.na(expedition_id))
+```
+
+How many expeditions have failed before the first succesful ascend?
+
+```{r}
+expeditions %>% skimr::skim()
+```
+
+# Investigate Unsuccesfully climbed peaks?
