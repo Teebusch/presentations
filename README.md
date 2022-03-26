@@ -98,9 +98,15 @@ There are a handful of [slides on Google Docs](https://docs.google.com/presentat
 
 ## Lectures
 
+#### Journal Club
+Part of MSc-level course in special needs education (SPED4001) 
+2020, 2021, 2022, University of Oslo
+
 #### Environmental Influences on Language Development in Children with Hearing Loss
 Part of MSc-level course in special needs education (SPED4001)  
 18 November 2020, University of Oslo (online)
+Fall 2021, University of Oslo (online)
+
 
 #### Data Logging & Sound Classification in Hearing Aids and CIs 
 Part of MSc-level course in Audiology  
