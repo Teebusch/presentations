@@ -96,17 +96,25 @@ There are a handful of [slides on Google Docs](https://docs.google.com/presentat
 
 ---
 
-## Lectures
+## Lectures & Other Academic Teaching
 
-#### Journal Club
+#### Journal Club for master students in special needs education with focus audiopedagogikk
 Part of MSc-level course in special needs education (SPED4001) 
 2020, 2021, 2022, University of Oslo
+
+#### Master thesis seminar for students in special needs education
+Fall 2021, University of Oslo
+
+#### Research Internship “Quality of life in children with cochlear implants”
+Spring 2021, Spring 2022, University of Oslo
+
+#### Prosjektarbeid (“Minimaster”)
+Spring 2021, University of Oslo
 
 #### Environmental Influences on Language Development in Children with Hearing Loss
 Part of MSc-level course in special needs education (SPED4001)  
 18 November 2020, University of Oslo (online)
 Fall 2021, University of Oslo (online)
-
 
 #### Data Logging & Sound Classification in Hearing Aids and CIs 
 Part of MSc-level course in Audiology  
