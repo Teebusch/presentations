@@ -1,6 +1,6 @@
 # Presentations
 
-A list of presentations, lectures, and workshops that I have given. Slides and source code for some of them cha be found in this repository. Others are available on request.
+A list of presentations, lectures, and workshops that I have given. Slides and source code for some of them can be found in this repository. Others are available on request.
 
 ## 10 Cool Things About R
  
@@ -128,9 +128,13 @@ May 2017, KU Leuven
 
 ---
 
-## Conference Presentations during my PhD
+## Conference Presentations during my PhD / Postdoc
 
 *Slides available on request.*
+
+#### Statped Fagdag, Oslo, Norway
+The 500 project – what can we learn from 500 Norwegian cochlear implant users?
+Oslo, 23 March 2022
 
 #### Cochlear Science and Research Seminar 'Connected Health'
 Berlin, 24 September 2018  
@@ -143,6 +147,7 @@ Can CI data logs predict children's vocabulary?
 #### Hearing Across the Lifespan (HeAL)
 Cernobbio, Italy, June 2018  
 Can data logs predict receptive vocabulary of children with CI?
+
 #### B-Audio meeting
 Louvain-la-Neuve, Belgium, 2017   
 Linking natural auditory environment and language development in children with cochlear implant. 
