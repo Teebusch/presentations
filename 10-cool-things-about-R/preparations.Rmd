@@ -18,6 +18,8 @@ read_csv(url) %>%
     climbing_status == "Unclimbed" ~ FALSE,
     TRUE ~ NA
   )) %>% 
+  mutate(first_ascent_year = if_else(
+    first_ascent_expedition_id == "SPH218301", 2018, first_ascent_year)) %>% 
   select(-peak_alternative_name, -peak_id, -climbing_status) %>% 
   relocate(climbed, .after = 2) %>% 
   write_csv('peaks.csv')
@@ -25,9 +27,10 @@ read_csv(url) %>%
 
 ```{r}
 peaks <- read_csv("peaks.csv")
+expeditions <- read_csv("expeditions.csv")
 ```
 
-We can have a look at the first few rows of the data with the `head()` function:
+We can have a look at the first few rows of the data
 
 ```{r}
 glimpse(peaks)
@@ -42,6 +45,12 @@ janitor::tabyl(peaks, climbed)
 peaks %>% 
   arrange(first_ascent_year) %>% 
   head()
+```
+```{r}
+peaks %>% 
+  ggplot(aes(first_ascent_year, height_metres)) +
+  geom_point() +
+  geom_smooth()
 ```
 
 
