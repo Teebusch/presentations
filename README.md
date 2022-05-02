@@ -27,7 +27,11 @@ A 90 minutes long hands-on introduction to R and why you should or should not le
 
 *Nordic RSE get together, December 2nd 2020, online [(link)](https://nordic-rse.org/events/2020-online-get-together/my-first-r-package/)*
 
+[(Slides and material)](https://github.com/Teebusch/presentations/tree/main/My-First-R-package)
+
 This talk is about how writing an R package has helped me leave my comfort zone and level up my R programming skills. The code I write as a researcher is mostly single-user and single-use. Writing and publishing code meant for others has helped me break old habits and get a better grasp of software engineering. R has a very streamlined ecosystem for package development that makes understanding and following best practices easy. I will talk about the things I have learned, why I think writing a package should be a rite of passage for any aspiring research software engineer, and why R is a great tool for this.
+
+
 
 ---
 
@@ -72,6 +76,10 @@ The course is for researchers and graduate students who want to communicate thei
 - *8 January 2020, UiO Research Bazaar, University of Oslo, Norway [(link)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/webapp.html)*
 - *15 December 2019, KoLab Hackerspace, Mechelen, Belgium [(link)](https://www.meetup.com/Ko-Lab-mechelen/events/266161193/)*
 
+- The code for this workshop lives [in its own repository](https://github.com/Teebusch/arworkshop).
+- The workshop uses [this repl.it](https://repl.it/@Teebusch/arworkshop).
+- There are a handful of [slides on Google Docs](https://docs.google.com/presentation/d/1w6RXi930NecEbSmyv7L5u3LIiuqUiUfcP-Kfew72AvU/edit?usp=sharing).
+
 Augmented reality (AR) apps add a virtual layer on top of the real world. This allows you to catch Pokémon in your backyard, but it also has serious potential for hacking your environment: You can use AR to share information where it is most useful, create fantastic experiences that merge the real and the virtual, or simply label your storage cabinets in the nerdiest way possible. Once you know how to augment the real world, the options are endless—and it is a lot easier than you think!
 
 In this workshop we will learn how to place virtual objects and annotations in the real world, so that they can be seen using a smartphone as a 'magic window'. We will learn how to animate things, how to add interactivity, and how to get data into AR. Finally, there will be a mini-hackathon where you use your new skills to build the AR web app of your (humble) dreams.
@@ -80,7 +88,7 @@ We will build everything with open source web technology. All you need is a comp
 
 #### In this workshop you will …
 
-- Learn how to use the A-Frame JavaScript framework to create 3D scenes for browser-based VR and AR, how to add and style text, simple 3D shapes, and pre-created 3D models, and how to add animation and interactivity.
+-Learn how to use the A-Frame JavaScript framework to create 3D scenes for browser-based VR and AR, how to add and style text, simple 3D shapes, and pre-created 3D models, and how to add animation and interactivity.
 
 - Get a basic understanding of how to bind data to A-Frame objects in order to create data-driven AR experiences.
 
@@ -89,10 +97,6 @@ We will build everything with open source web technology. All you need is a comp
 At the end of the workshop you will have a functioning AR app that will be hosted on the internet.
 
 This course is for anyone who wants to take their first steps with creating augmented reality experiences. It will be beginner-friendly. Most of the code we write will be relatively simple HTML and JavaScript. You do not need experience with HTML or JavaScript, but some programming experience is highly recommended.
-
-
-The code for this workshop lives [in its own repository](https://github.com/Teebusch/arworkshop). The workshop uses [this repl.it](https://repl.it/@Teebusch/arworkshop).
-There are a handful of [slides on Google Docs](https://docs.google.com/presentation/d/1w6RXi930NecEbSmyv7L5u3LIiuqUiUfcP-Kfew72AvU/edit?usp=sharing).
 
 ---
 
@@ -143,6 +147,8 @@ May 2017, KU Leuven
 #### Statped Fagdag, Oslo, Norway
 The 500 project – what can we learn from 500 Norwegian cochlear implant users?
 Oslo, 23 March 2022
+
+(slides)[https://github.com/Teebusch/presentations/blob/main/PhD%20Postdoc%20Conference%20Presentations/A%20tour%20of%20the%20500%20CI%20Project.pdf]
 
 #### Cochlear Science and Research Seminar 'Connected Health'
 Berlin, 24 September 2018  
