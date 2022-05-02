@@ -1,12 +1,16 @@
 # Presentations
 
-A list of presentations, lectures, and workshops that I have given. Slides and source code for some of them can be found in this repository. Others are available on request.
+A list of presentations, lectures, and workshops that I have given. 
+Slides and source code for some of them can be found in this repository. 
+Others are available on request.
 
 ## 10 Cool Things About R
  
 *ISP ComPros Research Group Meeting at UiO, April 6th, 2021*
 
-A 90 minutes long hands-on introduction to R and why you should or should not learn it. A pretty version of the speaker notes / handout is available on [hack.md](https://hackmd.io/@teebusch/10-cool-things-about-R).
+📼 [speaker notes / handout on Hack.md](https://hackmd.io/@teebusch/10-cool-things-about-R).
+
+A 90 minutes long hands-on introduction to R and why you should or should not learn it. 
 
 #### What will we do?
 
@@ -25,9 +29,9 @@ A 90 minutes long hands-on introduction to R and why you should or should not le
 
 ## My First R Package
 
-*Nordic RSE get together, December 2nd 2020, online [(link)](https://nordic-rse.org/events/2020-online-get-together/my-first-r-package/)*
+*Nordic RSE get together, December 2nd 2020, online [(link to event)](https://nordic-rse.org/events/2020-online-get-together/my-first-r-package/)*
 
-[(Slides and material)](https://github.com/Teebusch/presentations/tree/main/My-First-R-package)
+[📼 Slides and material on Github](https://github.com/Teebusch/presentations/tree/main/My-First-R-package)
 
 This talk is about how writing an R package has helped me leave my comfort zone and level up my R programming skills. The code I write as a researcher is mostly single-user and single-use. Writing and publishing code meant for others has helped me break old habits and get a better grasp of software engineering. R has a very streamlined ecosystem for package development that makes understanding and following best practices easy. I will talk about the things I have learned, why I think writing a package should be a rite of passage for any aspiring research software engineer, and why R is a great tool for this.
 
@@ -37,11 +41,11 @@ This talk is about how writing an R package has helped me leave my comfort zone 
 
 ## Workshop: Data Visualization Design
 
-*9 January 2020, Uio Research Bazaar, University of Oslo, Norway [(link)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/visualisation.html)*
+*9 January 2020, Uio Research Bazaar, University of Oslo, Norway [(link to event)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/visualisation.html)*
 
 **Co-hosted with Désirée Treichler**
 
-*Slides available on request*
+📼 *Slides available on request*
 
 In this workshop we will approach data visualization as a design problem, and learn how to solve this problem systematically. You will learn cognitive and design principles that help you understand what works and why, and how to explore different design solutions more efficiently.
 
@@ -76,22 +80,16 @@ The course is for researchers and graduate students who want to communicate thei
 - *8 January 2020, UiO Research Bazaar, University of Oslo, Norway [(link)](https://www.ub.uio.no/english/courses-events/events/all-libraries/2020/research-bazaar/webapp.html)*
 - *15 December 2019, KoLab Hackerspace, Mechelen, Belgium [(link)](https://www.meetup.com/Ko-Lab-mechelen/events/266161193/)*
 
-- The code for this workshop lives [in its own repository](https://github.com/Teebusch/arworkshop).
-- The workshop uses [this repl.it](https://repl.it/@Teebusch/arworkshop).
-- There are a handful of [slides on Google Docs](https://docs.google.com/presentation/d/1w6RXi930NecEbSmyv7L5u3LIiuqUiUfcP-Kfew72AvU/edit?usp=sharing).
+📼 The code for this workshop lives [in its own repository](https://github.com/Teebusch/arworkshop). The workshop uses [this repl.it](https://repl.it/@Teebusch/arworkshop). There are a handful of [slides on Google Docs](https://docs.google.com/presentation/d/1w6RXi930NecEbSmyv7L5u3LIiuqUiUfcP-Kfew72AvU/edit?usp=sharing).
 
 Augmented reality (AR) apps add a virtual layer on top of the real world. This allows you to catch Pokémon in your backyard, but it also has serious potential for hacking your environment: You can use AR to share information where it is most useful, create fantastic experiences that merge the real and the virtual, or simply label your storage cabinets in the nerdiest way possible. Once you know how to augment the real world, the options are endless—and it is a lot easier than you think!
-
 In this workshop we will learn how to place virtual objects and annotations in the real world, so that they can be seen using a smartphone as a 'magic window'. We will learn how to animate things, how to add interactivity, and how to get data into AR. Finally, there will be a mini-hackathon where you use your new skills to build the AR web app of your (humble) dreams.
-
 We will build everything with open source web technology. All you need is a computer with a browser. The app will be hosted online and will run in any modern browser. The user will need only a smartphone to use it—no installation required.
 
 #### In this workshop you will …
 
--Learn how to use the A-Frame JavaScript framework to create 3D scenes for browser-based VR and AR, how to add and style text, simple 3D shapes, and pre-created 3D models, and how to add animation and interactivity.
-
+- Learn how to use the A-Frame JavaScript framework to create 3D scenes for browser-based VR and AR, how to add and style text, simple 3D shapes, and pre-created 3D models, and how to add animation and interactivity.
 - Get a basic understanding of how to bind data to A-Frame objects in order to create data-driven AR experiences.
-
 - Learn how to turn an A-frame scene into an AR app, how to use AR markers to anchor AR objects in the real world, and how to use QR codes to make accessing your app seamless.
 
 At the end of the workshop you will have a functioning AR app that will be hosted on the internet.
@@ -101,6 +99,8 @@ This course is for anyone who wants to take their first steps with creating augm
 ---
 
 ## Lectures & Other Academic Teaching
+
+[📼 slides of some lectures can be found here.](https://github.com/Teebusch/presentations/tree/main/Lectures) Others available on request.
 
 #### Journal Club for master students in special needs education with focus audiopedagogikk
 Part of MSc-level course in special needs education (SPED4001)   
@@ -142,13 +142,11 @@ May 2017, KU Leuven
 
 ## Conference Presentations during my PhD / Postdoc
 
-*Slides available on request.*
+📼 [Slides from some presentations available here](https://github.com/Teebusch/presentations/tree/main/PhD%20Postdoc%20Conference%20Presentations). Others available on request.
 
 #### Statped Fagdag, Oslo, Norway
 The 500 project – what can we learn from 500 Norwegian cochlear implant users?
 Oslo, 23 March 2022
-
-(slides)[https://github.com/Teebusch/presentations/blob/main/PhD%20Postdoc%20Conference%20Presentations/A%20tour%20of%20the%20500%20CI%20Project.pdf]
 
 #### Cochlear Science and Research Seminar 'Connected Health'
 Berlin, 24 September 2018  
@@ -222,6 +220,8 @@ Workshop for Cochlear ClinTechs
 
 *April 2020, nowhere*
 
+[📼 slideshow](https://github.com/Teebusch/presentations/tree/main/What-Makes-a-Difference)
+
 In 'What Makes a Difference?' beschäftige ich mit der Frage was eine Differenz, einen Unterschied, ausmacht. Es ist ein kurzes visuelles Essay inspiriert von den Werken Scott McClouds und Nick Sousanis‘.
 Differenzen begegnen uns auf vielen Ebenen: Die Aufrechterhaltung der Differenz von Innen und Außen ist oberstes Ziel unseres Körpers. In der Gesellschaft sind es die 'feinen Unterschiede', die die Menschen, gerade wegen ihrer Feinheit, nahezu unüberwindlich voneinander trennen. In der Wissenschaft gilt der "significant difference" als der erbrachte Beweis.
 In 'What Makes a Difference?' betrachte ich Differenz aus der Sicht der Kognitionswissenschaft. Ich zeige, dass Differenzen manchmal 'just noticeable' sind, dass sie unsere Neuronen automatisch feuern lassen, dass wir Differenzen sehen wo keine sind, und keine Differenzen sehen wo sie existieren. Ich komme zu dem Schluss, dass es das Gehirn ist, dass den Unterschied macht.
@@ -231,17 +231,20 @@ Die Umsetzung ist minimalistisch und auf das wesentliche reduziert. Dies ist zum
 
 *2018, KU Leuven*
 
+[📼 slides and design documents](https://github.com/Teebusch/presentations/tree/main/Design-Thinking-and-Making)
+
 These presentations were for a course on Design Thinking and Making. The course was centered around critical design for the library of the future. These are the slides I made as part of the course assignments.
 
 ### Journal Club: Bayesian Growth Curve Modeling 
 
 *July 19th 2017, KU Leuven*
 
+[📼 slides and material](https://github.com/Teebusch/presentations/tree/main/Journal-Club-Bayes). The slides are in `Journal-Club-Bayes.pdf`. The main part of the analysis is in the R Notebook `loveAnalysis.Rmd`. You can view a live version of it [here](http://rpubs.com/teebusch/jc-bayesgcm). *This* repository contains the slides of my presentation and my own version of the analysis. In some places the code has been adapted to be more concise.
+
 In this edition of the journal club we will talk about love, babies, and Bayesian statistics. The paper carefully takes us through the steps involved in specifying, fitting and summarizing a growth curve model (GCM) in a Bayesian framework. GCMs are useful in developmental research and fit naturally in the Bayesian framework. This is my first contact with Bayesian statistics and, although the paper provides a very nice introduction, it leaves a lot of questions, which I would like to discuss.
 
 The paper we discuss is *Oravecz & Muth (2017). Fitting growth curve models in the Bayesian framework. Psychonomic Bulletin and Review*. The paper can be found [here](https://doi.org/10.3758/s13423-017-1281-0). The paper's accompanying git repository is [here](https://git.psu.edu/zzo1/FittingGCMBayesian). 
 
-*This* repository contains the slides of my presentation and my own version of the analysis. In some places the code has been adapted to be more concise.
 
-  + The slides are in `Journal-Club-Bayes.pdf`.
-  + The main part of the analysis is in the R Notebook `loveAnalysis.Rmd`. You can view a live version of it [here](http://rpubs.com/teebusch/jc-bayesgcm).
+
+
