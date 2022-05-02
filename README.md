@@ -128,10 +128,17 @@ May 2017, KU Leuven
 
 ## The Carpentries Teaching
 
-- March 2021 - R for Ecologists, Max Delbrück Center for Molecular Medicine Berlin (online)
-- October 2020 - R for Ecologists, University of Oslo
-- January 2020 - R for Reproducible Scientific Analysis, University of Oslo
-- November 2019 - R for Reproducible Scientific Analysis, University of Oslo
+[The Carpentries](https://carpentries.org) is a non-profit organisation that aims to teach technical skills to researchers through hands-on workshops. For this, teaching material is created and maintained collaboratively by members around the world. I am a certified The Carpentries instructor and lesson maintainer for the material for [Data Analysis and Visualization in R for Ecologists](https://github.com/datacarpentry/R-ecology-lesson) and I have been (co-)teaching at the following workshops:
+
+#### Data Analysis and Visualization in R for Ecologists
+
+- March 2021, Max Delbrück Center for Molecular Medicine Berlin (online)
+- October 2020, University of Oslo
+
+#### R for Reproducible Scientific Analysis
+
+- January 2020, University of Oslo
+- November 2019, University of Oslo
 
 #### As Helper
 
